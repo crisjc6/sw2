@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>App</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    #rudr_instafeed{
+    list-style:none  
+  }
+  #rudr_instafeed li{
+    float:left;
+    width:200px;
+    height:200px;
+    margin:10px
+  }
+  #rudr_instafeed li img{
+    max-width:100%;
+    max-height:100%;
+  }
+  </style>
+</head>
+<body>
+  <div >
+
+  </div> 
+  <app-root></app-root>
+
+  <div>
+    <p>
+    </p>
+  </div>
+  <div class="alert alert-success red lighten-3" role="alert" style="text-align:center;">
+     <a href="#" class="alert-link"><h1><b>InstaBloom </b></h1></a>
+  </div>
+  
+    <ul id="rudr_instafeed"></ul>
+
+
+
+  <script>
+    var token = '1585344637.2d758da.d9754909aa17467d829aebaa761097ff',
+    num_photos = 10,
+    container = document.getElementById( 'rudr_instafeed' ),
+    scrElement = document.createElement( 'script' );
+
+window.mishaProcessResult = function( data ) {
+    for( x in data.data ){
+        container.innerHTML += '<li><img src="' + data.data[x].images.low_resolution.url + '"></li>';
+    }
+}
+
+scrElement.setAttribute( 'src', 'https://api.instagram.com/v1/users/self/media/recent?access_token=' + token + '&count=' + num_photos + '&callback=mishaProcessResult' );
+document.body.appendChild( scrElement );
+</script>
+
+</body>
+</html>
